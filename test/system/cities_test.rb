@@ -20,7 +20,21 @@ class CitiesTest < ApplicationSystemTestCase
     # save_and_open_screenshot
     assert_equal cities_path, page.current_path
     assert_text "Mexico City"
-    save_and_open_screenshot
+    # save_and_open_screenshot
+  end
+
+  #update
+  test "update city name" do
+    login_as users(:minh)
+    visit edit_city_path(1)
+    # save_and_open_screenshot
+    fill_in "city_name", with: "Berlin, DE"
+    # save_and_open_screenshot
+    click_on "Update City"
+    # save_and_open_screenshot
+    assert_equal city_path(1), page.current_path
+    assert_text "Berlin, DE"
+    # save_and_open_screenshot
   end
 
 end

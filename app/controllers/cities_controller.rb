@@ -4,6 +4,10 @@ class CitiesController < ApplicationController
     @cities = City.all
   end
 
+  def show
+    @city = City.find(params[:id])
+  end
+
   def new
     @city = City.new
   end
@@ -14,6 +18,19 @@ class CitiesController < ApplicationController
       redirect_to cities_path
     else
       render :new
+    end
+  end
+
+  def edit
+    @city = City.find(params[:id])
+  end
+
+  def update
+    @city = City.find(params[:id])
+    if @city.update(city_params)
+      redirect_to city_path(@city)
+    else
+      render :edit
     end
   end
 

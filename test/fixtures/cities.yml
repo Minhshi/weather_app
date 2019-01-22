@@ -1,4 +1,6 @@
 berlin:
+  id: 1
   name: "Berlin"
 london:
+  id: 2
   name: "London"
