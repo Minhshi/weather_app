@@ -37,4 +37,15 @@ class CitiesTest < ApplicationSystemTestCase
     # save_and_open_screenshot
   end
 
+  #destroy
+  test "delete a city" do
+    login_as users(:minh)
+    visit city_path(2)
+    # save_and_open_screenshot
+    click_link "Delete"
+    # save_and_open_screenshot
+    assert_equal cities_path, page.current_path
+    # save_and_open_screenshot
+  end
+
 end

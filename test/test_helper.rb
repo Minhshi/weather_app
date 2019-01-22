@@ -12,16 +12,6 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
-# Capybara.register_driver :selenium do |app|
-#   options = Selenium::WebDriver::Chrome::Options.new(
-#     # It's the `headless` arg that make Chrome headless
-#     # + you also need the `disable-gpu` arg due to a bug
-#     args: %w[headless disable-gpu window-size=1366,768],
-#   )
-
-# Capybara.javascript_driver = :selenium
-# end
-
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     'chromeOptions' => { args: %w(headless disable-gpu) + [ 'window-size=1280,800' ] })
