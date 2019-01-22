@@ -11,7 +11,7 @@ before_install:
 addons:
   postgresql: '9.6'
 before_script:
-  - psql -c 'create database weather_app;' -U postgres
+  - psql -c 'create database weather_app_test;' -U postgres
 script:
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
