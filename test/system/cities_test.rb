@@ -1,9 +1,12 @@
 require "application_system_test_case"
 
 class CitiesTest < ApplicationSystemTestCase
+  setup except: "visiting the index" do
+    login_as users(:minh)
+  end
 
   #read
-  test "visiting the index" do
+  test "see all cities" do
     visit cities_path
     # save_and_open_screenshot
     assert_selector "h1", text: "City"
@@ -11,7 +14,6 @@ class CitiesTest < ApplicationSystemTestCase
 
   #create
   test "add a city" do
-    login_as users(:minh)
     visit new_city_path
     # save_and_open_screenshot
     fill_in "city_name", with: "Mexico City"
@@ -25,7 +27,6 @@ class CitiesTest < ApplicationSystemTestCase
 
   #update
   test "update city name" do
-    login_as users(:minh)
     visit edit_city_path(1)
     # save_and_open_screenshot
     fill_in "city_name", with: "Berlin, DE"
@@ -39,7 +40,6 @@ class CitiesTest < ApplicationSystemTestCase
 
   #destroy
   test "delete a city" do
-    login_as users(:minh)
     visit city_path(2)
     # save_and_open_screenshot
     click_link "Delete"
