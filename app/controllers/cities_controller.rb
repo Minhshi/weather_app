@@ -1,11 +1,12 @@
 class CitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
+  before_action :set_city, only: [:show, :edit, :update, :destroy]
+
   def index
     @cities = City.all
   end
 
   def show
-    @city = City.find(params[:id])
   end
 
   def new
@@ -22,11 +23,9 @@ class CitiesController < ApplicationController
   end
 
   def edit
-    @city = City.find(params[:id])
   end
 
   def update
-    @city = City.find(params[:id])
     if @city.update(city_params)
       redirect_to city_path(@city)
     else
@@ -35,7 +34,6 @@ class CitiesController < ApplicationController
   end
 
   def destroy
-    @city = City.find(params[:id])
     if @city.delete
       redirect_to cities_path
     end
@@ -46,4 +44,9 @@ class CitiesController < ApplicationController
   def city_params
     params.require(:city).permit(:name)
   end
+
+  def set_city
+    @city = City.find(params[:id])
+  end
+
 end
