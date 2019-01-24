@@ -7,6 +7,7 @@ class CitiesController < ApplicationController
   end
 
   def show
+    @api = ENV["APIKEY"]
   end
 
   def new

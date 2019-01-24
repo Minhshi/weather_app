@@ -1,2 +1,16 @@
 <%= @city.name %>
 <%= link_to "Delete", city_path(@city[:id]), method: :delete %>
+
+<div id="results">
+
+</div>
+<script>
+  const results = document.querySelector("#results");
+
+  const weather = []
+
+  fetch("http://api.openweathermap.org/data/2.5/weather?q=<%= @city.name %>&APPID=<%= @api %>")
+  .then(response => response.json())
+  .then(data => results.innerHTML = data.weather[0].main)
+
+</script>
